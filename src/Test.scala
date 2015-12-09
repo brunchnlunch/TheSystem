@@ -4,7 +4,8 @@ import scala.io.Source
 
 object Test {
     def main(args: Array[String]) {
-    
+          
+      
     //create some Items
     var christmasGnome = new Item(100, "ChristmasGnome", 40, 25, 11111)
     var bigGnome = new Item(101, "BigGnome", 40, 50, 11112)
@@ -16,16 +17,20 @@ object Test {
     var order2 = new Order(1112, Map(christmasGnome -> 1, bigGnome -> 1), "b", false, true)
     var order3 = new Order(1113, Map(purpleGnome -> 5), "c", false, false)
     
+    //create some workers
+    var worker1 = new Worker(1111, "Terry Bobbers", ArrayBuffer.empty[String], ArrayBuffer.empty[String])
+    var worker2 = new Worker(1112, "Joe Foot", ArrayBuffer("a"), ArrayBuffer.empty[String])
+    var worker3 = new Worker(1113, "Ted Desk", ArrayBuffer("a"), ArrayBuffer.empty[String])
     
     var a = new OrderList(order1, order2, order3)
     var b = new StockList(christmasGnome, bigGnome, tinyGnome, purpleGnome)
-    
+    var c = new WorkerList(worker1, worker2, worker3)
     
     
     println("Please select what you'd like to do from below: ")
     println("(1): Be assigned a new order")
     println("(2): Report damaged stock")
-    println("(3): Clocking in/out")
+    println("(3): Clocking in/out")    //worker and workerlist class?
     println("(4): View orders")
     println("(5): Item location")
     println("(6): Pick box size")
@@ -39,7 +44,7 @@ object Test {
       case "3" => println("3 not implemented")
       case "4" => viewOrders(OrderList)
       case "5" => viewItemLocation(StockList)
-      case "6" => println("6 not implemented")
+      case "6" => findBox(StockList, OrderList)
       case _ => println("Invalid Choice")
     }
     
@@ -63,12 +68,22 @@ object Test {
       var order = OrderList.findOrderByNumber(orderNumber.toInt).printOrder
     }
     
-    def viewItemLocation(StockList: StockList) {
+    def viewItemLocation(StockList: StockList) {  //make one which takes orders?
       println("Please enter item number")
       var itemNumber = scala.io.StdIn.readLine()
       println("Item is located at:")
       println(StockList.findItemByNumber(itemNumber.toInt).location)
     }
     
+    def findBox (StockList: StockList, OrderList : OrderList) {
+      var boxVolume = 0
+      println("Please enter the order number")
+      var orderNumber = scala.io.StdIn.readLine()
+      var order = OrderList.findOrderByNumber(orderNumber.toInt)
+      for (a <- order.items.keys) {
+        boxVolume += (a.volume * order.items(a))
+      }
+      println("Required box volume is " + boxVolume.toString)
+    }
   }
 }

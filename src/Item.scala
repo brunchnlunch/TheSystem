@@ -10,4 +10,8 @@ class Item (IDi: Int, Name: String, Quantity: Int, Volume: Int, Location: Int) {
   def increaseQuantity(a : Int) {
     quantity += a
   }
+  
+  def decreaseQuantity(a: Int) {
+    quantity -= a
+  }
 }

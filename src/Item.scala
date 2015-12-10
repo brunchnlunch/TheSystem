@@ -58,4 +58,14 @@ object StockList {
     a
   }
   
+  def itemLocation (ID : Int) : Int = {
+    var a =0
+    for(item <- Items) {
+      if(item.ID == ID) {
+        a = item.location
+      }
+    }
+    a
+  }
+  
 }

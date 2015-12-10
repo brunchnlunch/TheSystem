@@ -28,6 +28,11 @@ object Test {
     println("(4): View orders")
     println("(5): Item location")
     println("(6): Pick box size")
+    println("(7): Contact Courier")
+    println("(8): Purchase order recieved")
+    println("(9): View purchase orders")
+    println("(10): Completed an order")
+    println("(11): Print delivery label")
     var choice = scala.io.StdIn.readLine()
     println("You have chosen choice (" + choice +")")
     matchTest(choice)
@@ -39,6 +44,11 @@ object Test {
       case "4" => viewOrders
       case "5" => viewItemLocation
       case "6" => findBox
+      case "7" => contactCourier
+      case "8" => purchaseOrderRecieved
+      case "9" => checkRecievedPurchaseOrders
+      case "10" => completedOrder
+      case "11" => printDeliveryLabel
       case _ => println("Invalid Choice")
     }
     
@@ -80,5 +90,36 @@ object Test {
       }
       println("Required box volume is " + boxVolume.toString)
     }
+    
+    def contactCourier {
+      println("The courier has been contacted")
+    }
+    
+    def purchaseOrderRecieved {
+      println("Please under the purchase order ID")
+      var ID = scala.io.StdIn.readLine()
+      PurchaseOrderList.recievedOrder(ID.toInt)
+    }
+    
+    def checkRecievedPurchaseOrders {
+      println("Please enter the purchase order ID")
+      var ID = scala.io.StdIn.readLine()
+      PurchaseOrderList.printPurchaseOrder(ID.toInt)
+    }
+    
+    def completedOrder {
+      println("Please enter Order ID")
+      var ID = scala.io.StdIn.readLine()
+      OrderList.completedOrder(ID.toInt)
+    }
+    
+    def printDeliveryLabel {
+      println("Please enter Order ID")
+      var ID = scala.io.StdIn.readLine()
+      println("Label printed")
+      
+    }
+    
+    
   }
 }

@@ -1,24 +1,32 @@
+//Fix dates!
 
 
-class Order (IDi: Int, Items: Map[Item, Int], DatePlaced: String, IsCompleted : Boolean, IsAssigned : Boolean) {
-    var ID = IDi
-    var items = Items
-    var datePlaced = DatePlaced
-    var isCompleted = IsCompleted
-    var isAssigned = IsAssigned
-    
-    def printOrder {
-      println("ID: " + ID.toString)
+//items is a map from item ID to required quantity
+case class Order (ID: Int, items: Map[Int , Int], datePlaced: String, isCompleted : Boolean, isAssigned : Boolean) {
+}
+
+
+object OrderList {
+  var Orders = Set(new Order(1111, Map(102 -> 2), "a", true, true), new Order(1112, Map(100 -> 1, 101 -> 1), "b", false, true), new Order(1113, Map(103 -> 5), "c", false, false))
+  
+  def printOrder (ID : Int) {
+      println("ID: " + ID)
       println("Items: ")
-      for (a <- items.keys) {
-        print(a.ID)
-        print("    ")
-        print(a.name)
-        print("   x   ")
-        println(items(a))
+      var order : Order = null
+      for (a <- Orders){
+        if (ID == a.ID) {
+          order = a
+        }
       }
-      println("Date order was placed: " + datePlaced)
-      println("Has order been completed? " + isCompleted.toString)
-      println("Has order been assigned? " + isAssigned.toString)
-    }
+      for (b <- order.items.keys) {
+        print(b)
+        print("    ")
+        print(StockList.findItemByID(b).name)
+        print("   x   ")
+        println(order.items(b))
+      }
+      println("Date order was placed: " + order.datePlaced)
+      println("Has order been completed? " + order.isCompleted.toString)
+      println("Has order been assigned? " + order.isAssigned.toString)
+  }
 }

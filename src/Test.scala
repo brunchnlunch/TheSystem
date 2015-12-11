@@ -74,7 +74,7 @@ object Test {
       OrderList.printOrder(orderNumber.toInt)
     }
     
-    def viewItemLocation {                           //make one which takes orders?
+    def viewItemLocation {
       println("Please enter item number")
       var itemNumber = scala.io.StdIn.readLine()
       println("Item is located at:")
@@ -143,7 +143,7 @@ object Test {
     def viewOrderLocation {
       print("Please enter order ID")
       var ID = scala.io.StdIn.readLine()
-      var itemNumbers = ArrayBuffer.empty[Int]  //Array of item numbers
+      var itemNumbers = ArrayBuffer.empty[Int]    
       var order = OrderList.findOrderByID(ID.toInt)
       for(a <- order.items.keys) {
         itemNumbers += a
@@ -159,9 +159,6 @@ object Test {
         print("    ")
         println(StockList.itemLocation(b))
       }
-      
-      
-      //StockList.itemLocation(itemNumber.toInt)
     }
     
   }

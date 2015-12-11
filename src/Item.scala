@@ -4,7 +4,6 @@ case class Item (ID: Int, name: String, quantity: Int, volume: Int, location: In
 
 }
 
-
 object StockList {
   var Items = Set(Item(100, "ChristmasGnome", 40, 25, 11111), Item(101, "BigGnome", 0, 50, 11112), Item(102, "TinyGnome", 60, 10, 11113), Item(103, "PurpleGnome", 15, 30, 11114))
   

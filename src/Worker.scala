@@ -4,7 +4,6 @@ import java.util.Date
 case class Worker (ID: Int, name: String, clockIn: ArrayBuffer[Date], clockOut: ArrayBuffer[Date]){ //is forklift qualified? has order assigned?
 }
 
-
 object WorkerList {
   var Workers = Set(new Worker(1111, "Terry Bobbers", ArrayBuffer(new Date(93, 0, 28)), ArrayBuffer(new Date(93, 0, 29))),
       new Worker(1112, "Joe Foot", ArrayBuffer(new Date(93, 0, 28)), ArrayBuffer(new Date(94, 0, 28))),
@@ -50,7 +49,7 @@ object WorkerList {
     }
   }
   
-    def findWorkerByID (ID : Int) : Worker = {
+  def findWorkerByID (ID : Int) : Worker = {
     var worker : Worker = null
     for (a <- Workers) {
       if (ID == a.ID) {
